@@ -2,7 +2,7 @@
 Graph Neural Network Music Recommendation Model with Data collected form [Spotify API](https://developer.spotify.com/)
 
 ### V3 Graph Transformer (No User Embedding, Real-time inference)
-- Reduce problem
+- Reduce problem comparing with V2
   - from `REQUEST -> RUN DEEP LEARNING MODEL -> response`, which requires decent server to run deep learning model
   - to `REQUEST -> QUERY DB -> response`, which can be achieved by minimal serveless [lambda](https://aws.amazon.com/lambda/)
 - Same dataset as V2 (Check V2 to understand V3). But train with 
