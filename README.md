@@ -2,7 +2,10 @@
 Graph Neural Network Music Recommendation Model with Data collection Using Spotify
 
 ### V3 Graph Transformer (No User Embedding, Real-time inference)
-- Same dataset as V2. But train with 
+- Reduce problem
+  - from `REQUEST -> RUN DEEP LEARNING MODEL -> response`, which requires decent server to run deep learning model
+  - to `REQUEST -> QUERY DB -> response`, which can be achieved by minimal serveless [lambda](https://aws.amazon.com/lambda/)
+- Same dataset as V2 (Check V2 to understand V3). But train with 
   - (SongA, SongB, 1) if SongA SongB are liked by a common user
   - (SongA, SongB, -1) if SongA SongB are not liked by a common user
 - Recommend by *argmin_{song}-d(Liked_songs, song)*
@@ -17,7 +20,7 @@ Graph Neural Network Music Recommendation Model with Data collection Using Spoti
 - **Problem** accuracy
 
 ### V2 Graph Transformer
-- Convert data to (User-Song) [bipartite graph](https://en.wikipedia.org/wiki/Bipartite_graph) edge means like. Run GNN to generate embedding
+- Convert data to (User-Song) [bipartite graph](https://en.wikipedia.org/wiki/Bipartite_graph), edge means "like". Run GNN to generate embedding
 - Use cos similarity, K-d tree in embedding space between user and song for recommendation. Accuracy rocket!!!
 - **Problem** When new user visit. Need to add user to the **HUGE** graph and re-run GNN to generate embedding for the user, super expansive.
 
