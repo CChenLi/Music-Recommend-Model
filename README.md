@@ -1,5 +1,5 @@
 # Music-Recommend-Model
-Graph Neural Network Music Recommendation Model with Data collection Using Spotify
+Graph Neural Network Music Recommendation Model with Data collected form [Spotify API](https://developer.spotify.com/)
 
 ### V3 Graph Transformer (No User Embedding, Real-time inference)
 - Reduce problem
