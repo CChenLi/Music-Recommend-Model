@@ -1,6 +1,16 @@
 # Music-Recommend-Model
 Graph Neural Network Music Recommendation Model with Data collection Using Spotify
 
+### V3 Graph Transformer (No User Embedding, Real-time inference)
+- Same dataset as V2. But train with 
+  - (SongA, SongB, 1) if SongA SongB are liked by a common user
+  - (SongA, SongB, -1) if SongA SongB are not liked by a common user
+- Recommend by *argmin_{song}-d(Liked_songs, song)*
+- **EFFICIENT** sample SongA SongB that are not liked by a common user? Search? **NO!**
+  - I have **sparse** addjacent matrix *M*, and I only need compute *M^2* *once* efficiently and reuse.
+  - \mathbbm{1} M^2_{i, j} indicate song i and j are liked by a common user.
+> Glad I still remember the Graph thoery class in sophomore. Super huge boost in efficiency
+
 ### V1 MLP
 - User MLP to embed user and song according to the song in user's playlist.
 - Use cos similarity, K-d tree in embedding space between user and song for recommendation
@@ -10,15 +20,6 @@ Graph Neural Network Music Recommendation Model with Data collection Using Spoti
 - Convert data to (User-Song) [bipartite graph](https://en.wikipedia.org/wiki/Bipartite_graph) edge means like. Run GNN to generate embedding
 - Use cos similarity, K-d tree in embedding space between user and song for recommendation. Accuracy rocket!!!
 - **Problem** When new user visit. Need to add user to the **HUGE** graph and re-run GNN to generate embedding for the user, super expansive.
-
-### V3 Graph Transformer (No User Embedding, Real-time inference)
-- Same dataset as V2. But train with 
-  - (SongA, SongB, 1) if SongA SongB are liked by a common user
-  - (SongA, SongB, -1) if SongA SongB are not liked by a common user
-- Recommend by *argmin_{song}-d(Liked_songs, song)*
-- **EFFICIENT** sample SongA SongB that are not liked by a common user? Search? **NO!**
-  - I have **sparse** addjacent matrix *M*, and I only need compute *M^2* once efficiently and reuse.
-  - \mathbbm{1} M^2_{i, j} indicate song i and j are liked by a common user.
 
 ## Data Collection
 - All the data were collected through [Spotify API](https://developer.spotify.com/)
