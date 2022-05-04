@@ -1,5 +1,9 @@
 # Music-Recommend-Model
-Self-supervised GNN Music Recommendation Model with Data collected using [Spotify API](https://developer.spotify.com/)
+Self-supervised GNN Music Recommendation Model with Data collected using [Spotify API](https://developer.spotify.com/).
+Most important works are defined in 
+- **dataset.py**: Build the dataset as graph and sampling training data.
+- **train.py**: Defined the training pipeline
+- **user2track.py**: Raw data collection. The (user: [liked_tracks]) key-value pairs are defined in JSON format so that new user data can be pushed to [DynamoDB](https://aws.amazon.com/dynamodb) during use of the APP, and contribute to scheduled model retraining.
 
 ### V3 Graph Transformer Contrastive Learning For Real-time Inference
 - Problem reduction comparing with V2
@@ -10,7 +14,7 @@ Self-supervised GNN Music Recommendation Model with Data collected using [Spotif
   - (SongA, SongB, -1) if SongA SongB are not liked by a common user
 - Recommend by *argmin_{song}-d(Liked_songs, song)*
 - **EFFICIENT** sample SongA SongB
-  - Use **sparse** addjacent matrix *M* to compute *M^2* for only once, query *M^2* to find distance 2 neighbors each time.
+  - Use **sparse** addjacent matrix *M* to compute *M^2* for only once, query cached *M^2* to find distance-two neighbors each time.
   - \mathbbm{1} M^2_{i, j} indicate song i and j are liked by a common user. That is O(1) optimized from O(N^2)
 - Contrastive learning and data sampling pipeline defined in **dataset.SpotifyGraph2** and **train.trainG2**
 > Glad I still remember the Graph thoery class in sophomore. Otherwise take hours to sample just one batch. (More detailed optimization are illustrated in the comments in **dataset.SpotifyGraph2**)
