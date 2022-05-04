@@ -1,18 +1,19 @@
 # Music-Recommend-Model
-Graph Neural Network Music Recommendation Model with Data collected form [Spotify API](https://developer.spotify.com/)
+Self-supervised GNN Music Recommendation Model with Data collected using [Spotify API](https://developer.spotify.com/)
 
-### V3 Graph Transformer (No User Embedding, Real-time inference)
-- Reduce problem comparing with V2
+### V3 Graph Transformer Contrastive Learning For Real-time Inference
+- Problem reduction comparing with V2
   - from `REQUEST -> RUN DEEP LEARNING MODEL -> response`, which requires decent server to run deep learning model
-  - to `REQUEST -> QUERY DB -> response`, which can be achieved by minimal serveless [lambda](https://aws.amazon.com/lambda/)
+  - to `REQUEST -> QUERY DB -> response`, which can be achieved by minimal serveless [lambda](https://aws.amazon.com/lambda/) in real-time
 - Same dataset as V2 (Check V2 to understand V3). But train with 
   - (SongA, SongB, 1) if SongA SongB are liked by a common user
   - (SongA, SongB, -1) if SongA SongB are not liked by a common user
 - Recommend by *argmin_{song}-d(Liked_songs, song)*
-- **EFFICIENT** sample SongA SongB that are not liked by a common user? Search? **NO!**
-  - I have **sparse** addjacent matrix *M*, and I only need compute *M^2* *once* efficiently and reuse.
+- **EFFICIENT** sample SongA SongB
+  - Use **sparse** addjacent matrix *M* to compute *M^2* for only once, query *M^2* to find distance 2 neighbors each time.
   - \mathbbm{1} M^2_{i, j} indicate song i and j are liked by a common user. That is O(1) optimized from O(N^2)
-> Glad I still remember the Graph thoery class in sophomore. Super huge boost in efficiency
+- Contrastive learning and data sampling pipeline defined in **dataset.SpotifyGraph2** and **train.trainG2**
+> Glad I still remember the Graph thoery class in sophomore. Otherwise take hours to sample just one batch. (More detailed optimization are illustrated in the comments in **dataset.SpotifyGraph2**)
 
 ### V1 MLP
 - User MLP to embed user and song according to the song in user's playlist.
