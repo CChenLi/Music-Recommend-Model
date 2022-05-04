@@ -6,6 +6,18 @@ Most important works are defined in
 - **user2track.py**: Raw data collection. The (user: [liked_tracks]) key-value pairs are defined in JSON format so that new user data can be pushed to [DynamoDB](https://aws.amazon.com/dynamodb) during use of the APP, and contribute to scheduled model retraining.
 
 ### V3 Graph Transformer Contrastive Learning For Real-time Inference
+
+#### Considering the following mini example with only 3 users and 4 tracks/songs
+**The dataset is is visualized as**
+<p align="center">
+<img src="https://user-images.githubusercontent.com/63531857/166812293-6149f381-9f76-4d2a-94bd-d1fa192d2094.png" width="600" />
+</p>
+
+**Using Contrastive self-supervised pipeline to train the Encoder on the dataset by**
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/63531857/166812296-407102a1-f470-45c3-99b1-93a60983cf01.png" width="600" />
+</p>
 - Problem reduction comparing with V2
   - from `REQUEST -> RUN DEEP LEARNING MODEL -> response`, which requires decent server to run deep learning model
   - to `REQUEST -> QUERY DB -> response`, which can be achieved by minimal serveless [lambda](https://aws.amazon.com/lambda/) in real-time
