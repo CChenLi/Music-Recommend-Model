@@ -3,11 +3,17 @@ Self-supervised GNN Music Recommendation Model with Data collected using [Spotif
 
 ## V3 Graph Transformer Contrastive Learning For Real-time Inference
 
+**Description:** Run GNN on most recent User-Song graph to update embedding for each song on schedule. **Training Objective:** The cos similarity between two songs' embedding represents the probability that they are neighbor. Query the save embedding the find songs that are most similar to the songs in user's liked list as recommendationo.
+
+> **Define:** Song-1 and Song-2 are neighbor if there exist at least one user, whose liked list contains both Song-1 and Song-2
+
 ### Considering the following mini example with only 3 users and 4 tracks/songs
 **Build the dataset by [dataset.SpotifyGraph2](https://github.com/CChenLi/Music-Recommend-Model/blob/319c50305a1d241d67bccc529edb7dc231120c4d/src/datasets.py#L174) and the following the the visualization of the procedure**
 
 <img src="https://user-images.githubusercontent.com/63531857/166812293-6149f381-9f76-4d2a-94bd-d1fa192d2094.png" width="600" />
 
+- **Optimization detail:** By computing and saving **B** using **sparse adjacent matrix multiplication**, we are able to find the neighbor of any song in O(1) time. Otherwise, we need to search through all user's likedlist to check if two songs are neighbor, that's O(N^2).
+- Caching **B** makes following sampling for training data super efficient. Without this optimization, the training won't finish unitl I finish my degree.
 
 **Using Contrastive self-supervised pipeline to train the Encoder on the dataset by, code in [trainG2](https://github.com/CChenLi/Music-Recommend-Model/blob/319c50305a1d241d67bccc529edb7dc231120c4d/src/train.py#L90) and [SpotifyGraph2.getitem](https://github.com/CChenLi/Music-Recommend-Model/blob/319c50305a1d241d67bccc529edb7dc231120c4d/src/datasets.py#L284)**
 
