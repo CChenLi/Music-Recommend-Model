@@ -4,18 +4,18 @@ Self-supervised GNN Music Recommendation Model with Data collected using [Spotif
 ## V3 Graph Transformer Contrastive Learning For Real-time Inference
 
 ### Considering the following mini example with only 3 users and 4 tracks/songs
-**Build the dataset by [dataset.SpotifyGraph2](https://github.com/CChenLi/Music-Recommend-Model/blob/bbcb451d35ae50693df26a1388079198e8b15c7e/datasets.py#L174) and the following the the visualization of the procedure**
+**Build the dataset by [dataset.SpotifyGraph2](https://github.com/CChenLi/Music-Recommend-Model/blob/319c50305a1d241d67bccc529edb7dc231120c4d/src/datasets.py#L174) and the following the the visualization of the procedure**
 
 <img src="https://user-images.githubusercontent.com/63531857/166812293-6149f381-9f76-4d2a-94bd-d1fa192d2094.png" width="600" />
 
 
-**Using Contrastive self-supervised pipeline to train the Encoder on the dataset by, code in [trainG2](https://github.com/CChenLi/Music-Recommend-Model/blob/bbcb451d35ae50693df26a1388079198e8b15c7e/train.py#L90) and [SpotifyGraph2.getitem](https://github.com/CChenLi/Music-Recommend-Model/blob/bbcb451d35ae50693df26a1388079198e8b15c7e/datasets.py#L284)**
+**Using Contrastive self-supervised pipeline to train the Encoder on the dataset by, code in [trainG2](https://github.com/CChenLi/Music-Recommend-Model/blob/319c50305a1d241d67bccc529edb7dc231120c4d/src/train.py#L90) and [SpotifyGraph2.getitem](https://github.com/CChenLi/Music-Recommend-Model/blob/319c50305a1d241d67bccc529edb7dc231120c4d/src/datasets.py#L284)**
 
 
 <img src="https://user-images.githubusercontent.com/63531857/166812296-407102a1-f470-45c3-99b1-93a60983cf01.png" width="600" />
 
 
-**Efficient & Elegant Real-time Inference**.  
+**Efficient & Elegant Real-time Inference**. In 
 Consider the following case when a user named **Jane** requests for a recommendation list. Our database indicated that Jane has n songs in her liked list:
 
 <img src="https://user-images.githubusercontent.com/63531857/167088999-8714edf4-d979-4322-aaba-7aa234de8ca1.png" width="600" />
