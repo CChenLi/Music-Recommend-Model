@@ -1,5 +1,6 @@
 # Music-Recommend-Model
 Self-supervised GNN Music Recommendation Model with Data collected using [Spotify API](https://developer.spotify.com/).
+Front-end is [Here](https://github.com/JoanWu5/cc-music-recommendation-frontend)
 
 ## V3 Graph Transformer Contrastive Learning For Real-time Inference
 
