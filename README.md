@@ -1,7 +1,8 @@
 # Music-Recommend-Model
 Self-supervised GNN Music Recommendation Model with Data collected using [Spotify API](https://developer.spotify.com/).
-Front-end is [Here](https://github.com/JoanWu5/cc-music-recommendation-frontend).  
-Website hosted on [Music Recommendation](http://project-frontend222.s3-website-us-east-1.amazonaws.com/build2/index.html)
+- AWS serverless backend is [Here](https://github.com/CChenLi/Music-Recommend-Lambda)
+- Frontend is [Here](https://github.com/JoanWu5/cc-music-recommendation-frontend)
+- Website hosted on [Music Recommendation](http://project-frontend222.s3-website-us-east-1.amazonaws.com/build2/index.html)
 
 ## V3 Graph Transformer Contrastive Learning For Real-time Inference
 
